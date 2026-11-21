@@ -1,0 +1,46 @@
+rules_version = '2';
+
+// Firestore security rules for Scaffold (Part 1).
+// Deploy with:  firebase deploy --only firestore:rules
+// or paste into Firebase console > Firestore > Rules.
+//
+// Points and counters are updated client-side in batches/transactions, so
+// other users may only touch those specific fields. For production, move
+// point awards to Cloud Functions and lock these fields down completely.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function onlyChanges(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid)
+        && request.resource.data.points == 0
+        && request.resource.data.creationsCount == 0;
+      // The owner edits their profile; anyone signed in can award points.
+      allow update: if isOwner(uid) || (signedIn() && onlyChanges(['points']));
+      allow delete: if false;
+    }
+
+    match /creations/{creationId} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.likesCount == 0
+        && request.resource.data.forksCount == 0
+        && request.resource.data.descendantsCount == 0;
+      allow update: if isOwner(resource.data.authorId)
+        || (signedIn() && onlyChanges(['likesCount', 'forksCount', 'descendantsCount', 'viewsCount']));
+      allow delete: if isOwner(resource.data.authorId);
+
+      match /likes/{uid} {
+        allow read: if signedIn();
+        allow create, delete: if isOwner(uid);
+      }
+    }
+  }
+}
