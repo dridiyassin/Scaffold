@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "951302454103",
+    "project_id": "scaffold-dridiyassin",
+    "storage_bucket": "scaffold-dridiyassin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951302454103:android:4b29db2fbb9d1205931c12",
+        "android_client_info": {
+          "package_name": "com.dridiyassin.scaffold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951302454103-m0326pds5ha7fa7auetonh27ie4uivqs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dridiyassin.scaffold",
+            "certificate_hash": "b9ac450cbadb5757b498177b6643c21a08faf2d8"
+          }
+        },
+        {
+          "client_id": "951302454103-55sl179hmqsjepkav4c93oidm4q1lf4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxt4NpryS0tjYgZK8TRsC0W9L-6J9gjNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951302454103-55sl179hmqsjepkav4c93oidm4q1lf4m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "951302454103-83j5mg5pgr416j5crn3ggguhsfv5d3l6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dridiyassin.scaffold"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

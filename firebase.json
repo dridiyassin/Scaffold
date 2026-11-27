@@ -1,5 +1,37 @@
 {
   "firestore": {
+    "database": "(default)",
+    "location": "europe-west1",
     "rules": "firestore.rules"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Scaffold",
+        "supportEmail": "dridiyassin@gmail.com"
+      }
+    }
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "scaffold-dridiyassin",
+          "appId": "1:951302454103:android:4b29db2fbb9d1205931c12",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "scaffold-dridiyassin",
+          "configurations": {
+            "android": "1:951302454103:android:4b29db2fbb9d1205931c12",
+            "ios": "1:951302454103:ios:2ab54729b5954be9931c12",
+            "web": "1:951302454103:web:dd2a758dd9fa61c4931c12"
+          }
+        }
+      }
+    }
   }
 }

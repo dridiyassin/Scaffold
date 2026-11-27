@@ -77,18 +77,28 @@ Everything lives in `Y:\SDKs` and is on the **user PATH** (open a new terminal t
 `flutter doctor` is green for Android. (`android/gradle.properties` sets
 `kotlin.incremental=false` because the project and the pub cache are on different drives.)
 
-### 2. Firebase (required before the app can sign in)
-1. `firebase login` (opens your browser).
-2. Create a project at <https://console.firebase.google.com> (or let the next command create one).
-3. From this folder: `flutterfire configure` → pick the project, platforms *android* (and *ios*).
-   This replaces the placeholder `lib/firebase_options.dart` and adds `google-services.json`.
-4. Console → **Authentication → Sign-in method**: enable *Email/Password* and *Google*.
-5. Console → **Firestore Database**: create a database, then `firebase deploy --only firestore:rules`
-   (the rules are in `firestore.rules`, wired through `firebase.json`).
-6. **Google Sign-In on Android**: get the debug SHA-1 with `cd android; .\gradlew signingReport`,
-   add it to the Android app in Firebase, then run `flutterfire configure` again.
+### 2. Firebase (done)
+The app is connected to the Firebase project **`scaffold-dridiyassin`**
+([console](https://console.firebase.google.com/project/scaffold-dridiyassin/overview)):
 
-Until step 3 is done the app opens on a "Firebase setup needed" screen instead of crashing.
+| Piece | Where it comes from |
+|---|---|
+| Android, iOS and web apps | `flutterfire configure` → `lib/firebase_options.dart`, `android/app/google-services.json` |
+| Firestore (default database, `europe-west1`) + security rules | `firebase.json` → `firebase deploy --only firestore` |
+| Sign-in: e-mail/password and Google | `firebase.json` (`auth.providers`) → `firebase deploy --only auth` |
+| Google Sign-In on Android | debug-key SHA-1 and SHA-256 of this PC registered on the Android app |
+| Google Sign-In on iOS | client id and URL scheme in `ios/Runner/Info.plist` |
+
+`.firebaserc` makes `scaffold-dridiyassin` the default project, so `firebase deploy` needs no flag.
+
+**Building on another PC:** Google Sign-In on Android only accepts builds signed with a registered
+key. Get that PC's debug SHA-1 (`cd android; .\gradlew signingReport`), then:
+```
+firebase apps:android:sha:create 1:951302454103:android:4b29db2fbb9d1205931c12 <SHA-1>
+flutterfire configure --project scaffold-dridiyassin --platforms android,ios,web --android-package-name com.dridiyassin.scaffold --ios-bundle-id com.dridiyassin.scaffold --yes
+```
+Do the same with the release key before publishing. Google Sign-In is wired for Android and iOS;
+on the web, sign in with e-mail.
 
 ### 3. Run
 Either plug in an Android phone with **USB debugging** enabled, or use the emulator. The
