@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <rect width="1024" height="1024" fill="#121213"/>
+  <g transform="translate(512 512) scale(1.14) translate(-512 -512)">
+    <defs><mask id="play" maskUnits="userSpaceOnUse" x="0" y="0" width="1024" height="1024"><rect width="1024" height="1024" fill="#fff"/><polygon points="492.8,353 492.8,463 556,408" fill="#000" stroke="#000" stroke-width="18" stroke-linejoin="round"/></mask></defs>
+    <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#FF6A00" stroke-width="40" points="408,309 262,382 262,642 376,699"/>
+    <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#FF6A00" stroke-width="40" points="616,309 762,382 762,642 648,699"/>
+    <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#FFFFFF" stroke-width="42" points="340,616 512,702 684,616"/>
+    <polyline fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#FFFFFF" stroke-width="42" points="340,512 512,598 684,512"/>
+    <polygon mask="url(#play)" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="42" stroke-linejoin="round" points="340,408 512,322 684,408 512,494"/>
+  </g>
+</svg>
